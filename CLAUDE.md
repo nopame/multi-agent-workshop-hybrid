@@ -28,6 +28,7 @@ npm run verify       # ตรวจเครื่องและแอป (scri
 ```
 
 - ไม่มีขั้น build หรือ lint และไม่มีการรันเคสเดียวของด่าน — รัน `npm run gate` ทั้งชุดเสมอ
+- `npm test` ยืนยัน "สภาพชุดเริ่ม" ไม่ใช่ความถูกต้องของแอป: ด่านต้องแดง 0/6, `server.js` ต้องไม่มี `writeFile`, ห้ามมี `vercel.json` / `api/` / `.mcp.json` และ `CLAUDE.md` กับ `AGENTS.md` ต้องมีวลีชุดเดียวกัน (`scripts/quality-gate.js`, `data/notes.json`, `VERCEL`, `OPENROUTER_API_KEY`, `ANTHROPIC_API_KEY`, `notes-persists`) — พอแล็บแก้แอปแล้ว เทสบางข้อจะตกตามดีไซน์ ให้วัดผลงานด้วย `npm run gate` แทน รันเทสข้อเดียวได้ด้วย `node --test --test-name-pattern="<ชื่อเทส>" scripts/test-starter.js`
 - ด่านจะ spawn `node server.js` เองบน `PORT` (ค่าเริ่ม 3000) ถ้าพอร์ตถูกใช้อยู่ (เช่นเปิด `npm start` ค้างไว้) เคสฝั่งเซิร์ฟเวอร์ทั้งหมดจะถูกนับว่าตก ให้ปิดเซิร์ฟเวอร์ก่อนรันด่าน
 - เช็กเครื่อง: `scripts/check-machine.ps1` (Windows) หรือ `scripts/check-machine.sh` (Mac/Linux) สคริปต์บอกแค่ความยาวคีย์ ไม่พิมพ์ค่า
 

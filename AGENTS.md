@@ -30,6 +30,8 @@ npm run verify       # ตรวจเครื่องและแอป (scri
 npm run check-machine  # bash scripts/check-machine.sh (Windows ใช้ scripts/check-machine.ps1)
 ```
 
+`npm test` ยืนยัน "สภาพชุดเริ่ม" ไม่ใช่ความถูกต้องของแอป: ด่านต้องแดง 0/6, `server.js` ต้องไม่มี `writeFile`, ห้ามมี `vercel.json` / `api/` / `.mcp.json` และ `CLAUDE.md` กับ `AGENTS.md` ต้องมีวลีชุดเดียวกัน — พอแล็บแก้แอปแล้ว เทสบางข้อจะตกตามดีไซน์ ให้วัดผลงานด้วย `npm run gate` แทน
+
 - ไม่มี build / lint / typecheck และรันเคสเดียวของด่านไม่ได้ — ให้รัน `npm run gate` ทั้งชุดเสมอ
 - **`npm test` ตรวจว่าชุดเริ่มยังพังอยู่** มัน assert ว่าด่านแดง 0/6, `server.js` ไม่มี `writeFile`, และโน้ตยังอยู่ในหน่วยความจำเท่านั้น — เมื่อแก้แอปให้ผ่านแล้ว `npm test` จะแดงเองเป็นธรรมดา ให้ยึด `npm run gate` เป็นเกณฑ์ส่งมอบ อย่ารัน `npm test` แล้วสรุปว่างานพัง
 - `npm run gate` spawn `node server.js` เองบน `PORT` (ค่าเริ่ม 3000) ถ้าพอร์ตถูกยึดอยู่ เช่นลืมปิด `npm start` เคสฝั่งเซิร์ฟเวอร์ 5 เคสจะตกพร้อมกันด้วยข้อความ `port 3000 is already in use` ให้ปิดเซิร์ฟเวอร์ก่อนรันด่าน
